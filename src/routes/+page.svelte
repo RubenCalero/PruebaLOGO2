@@ -37,9 +37,14 @@
 <h2>Frutería</h2>
 
 {#each productos as producto}
-	<button on:click={function() { agregarAlTicket(producto) }}>
+    <div>
+	<button 
+        class="bg-blue-100 hover:bg-blue-200 px-3 py-1 m-1 rounded-md"
+        on:click={function() { agregarAlTicket(producto) }}>
 		{producto.nombre}
 	</button>
+    </div>
+    
 {/each}
 
 <hr />
@@ -49,11 +54,12 @@
 	{#each ticket as producto, i}
 		<li>
 			{producto.nombre} - {producto.precio} €
-			<button on:click={function() { eliminarDelTicket(i) }}>
+			<button
+                class="bg-red-100 hover:bg-red-200 px-3 py-1 m-1 rounded-md"
+                on:click={function() { eliminarDelTicket(i) }}>
 				Eliminar
 			</button>
 		</li>
 	{/each}
 </ul>
-
-<p><strong>Total:</strong> {total}</p>
+<p><strong>Total:</strong> <span class="bg-green-100 px-3 rounded-md">{total}</span></p>
