@@ -14,23 +14,28 @@
 		ticket.push(producto);
 		ticket = ticket;
 				
-        let suma = 0;
-		for (let i = 0; i < ticket.length; i = i + 1) {
-			suma = suma + ticket[i].precio;
-		}
-		total = suma;
+        recalcularTotal();
 	}
 
 	function eliminarDelTicket(indice) {
 		ticket.splice(indice, 1);
 		ticket = ticket;
 		
+        recalcularTotal();
+
+	}
+
+    function recalcularTotal(){
 		let suma = 0;
 		for (let i = 0; i < ticket.length; i = i + 1) {
 			suma = suma + ticket[i].precio;
 		}
 		total = suma;
-	}
+    }
+
+    function eliminarTodo(){
+        ticket = [];
+    }
 
 </script>
 
@@ -61,5 +66,13 @@
 			</button>
 		</li>
 	{/each}
+
 </ul>
-<p><strong>Total:</strong> <span class="bg-green-100 px-3 rounded-md">{total}</span></p>
+    {#if ticket.length > 0}
+        <button
+            class="bg-red-400 hover:bg-red-600 px-3 py-1 m-1 rounded-md"
+            on:click={function() { eliminarTodo() }}>
+            Eliminar todo
+        </button>
+    {/if}
+<p><strong>Total:</strong> <span class="bg-green-100 px-3 rounded-md">{total} €</span></p>
